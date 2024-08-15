@@ -15,9 +15,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Change Directory
-        run: cd dev-sec-ops/base-images
-
       - name: Build Docker Image
         run: |
           docker build -t "${{ env.DOCKER_REGISTRY_USERNAMES }}/license-finder:latest" -f license_finder .
