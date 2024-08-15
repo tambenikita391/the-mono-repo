@@ -8,8 +8,6 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    env:
-      DOCKER_REGISTRY_USERNAME: ${{ secrets.DOCKER_REGISTRY_USER }}
 
     steps:
       - name: Checkout Code
