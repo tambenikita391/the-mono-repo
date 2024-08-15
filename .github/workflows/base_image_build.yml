@@ -2,7 +2,7 @@ name: Build base images
 
 on:
   push:
-    path:
+    paths:
       - dev-sec-ops/base-images/**
 
 jobs:
@@ -17,10 +17,11 @@ jobs:
         run: docker build -t ${{secrets.DOCKER_REGISTRY_USER}}/license-finder:latest -f base-images/license_finder .
 
       - name: Login to docker registry
-        run: docker /login-action@v2
-        with:
-         username: ${{secrets.DOCKER_REGISTRY_USER}}
-         password: ${{secrets.DOCKER_REGISTRY_PAT}}
+        uses: docker/login-action@v2
+        env: 
+          DOCKER_USERNAME: ${{ secrets.DOCKER_REGISTRY_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_REGISTRY_PAT }}
+        
 
       
       - name: Push docker image
