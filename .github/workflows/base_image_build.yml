@@ -2,8 +2,8 @@ name: Base Image Build
 
 on:
   push:
-    branches:
-      - main
+     paths:
+      - dev-sec-ops/base-images/**
 
 env:
   DOCKER_REGISTRY_USERNAMES: ${{ secrets.DOCKER_REGISTRY_USERNAMES }}
