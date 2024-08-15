@@ -10,20 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: code checkout
+      - name: Code checkout
         uses: actions/checkout@v3
 
-      - name: Build image
-        run: docker build -t ${{secrets.DOCKER_REGISTRY_USER}}/license-finder:latest -f base-images/license_finder .
+      - name: Build license finder image
+        run: docker build -t ${{ secrets.DOCKER_REGISTRY_USER }}/license-finder:latest -f license_finder .
+        working-directory: base-images
 
       - name: Login to docker registry
         uses: docker/login-action@v2
-        env: 
+        env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_REGISTRY_USER }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_REGISTRY_PAT }}
-        
 
-      
       - name: Push docker image
-        run: docker push -t ${{secrets.DOCKER_REGISTRY_USER}}/license-finder:latest
-   
+        run: docker push ${{ secrets.DOCKER_REGISTRY_USER }}/license-finder:latest
