@@ -15,7 +15,7 @@ jobs:
 
       - name: Build license finder image
         run: |
-          docker build -t ${DOCKER_REGISTRY_USER}/license-finder:latest -f license_finder .
+          docker build -t ${DOCKER_REGISTRY_USERNAMES}/license-finder:latest -f license_finder .
         working-directory: dev-sec-ops/base-images
 
       - name: Login to Docker Hub
