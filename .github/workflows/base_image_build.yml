@@ -6,7 +6,7 @@ on:
       - dev-sec-ops/base-images/**
 
 env:
-  DOCKER_REGISTRY_USER: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_REGISTRY_USER: tambenikita391
 
 jobs:
   build-base-images:
@@ -18,7 +18,7 @@ jobs:
 
       - name: Build license finder image
         run: |
-          docker build -t $DOCKER_REGISTRY_USER/license-finder:latest -f license_finder .
+          docker build -t ${DOCKER_REGISTRY_USER}/license-finder:latest -f license_finder .
         working-directory: dev-sec-ops/base-images
 
       - name: Login to Docker Hub
@@ -28,4 +28,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push docker image
-        run: docker push $DOCKER_REGISTRY_USER/license-finder:latest
+        run: docker push ${DOCKER_REGISTRY_USER}/license-finder:latest
