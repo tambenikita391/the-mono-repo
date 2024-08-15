@@ -15,7 +15,7 @@ jobs:
 
       - name: Build license finder image
         run: |
-          cd base-images
+          cd ${GITHUB_WORKSPACE}/dev-sec-ops/base-images
           docker build -t ${{ secrets.DOCKER_REGISTRY_USER }}/license-finder:latest -f license_finder .
 
       - name: Login to docker registry
