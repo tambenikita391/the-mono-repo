@@ -15,7 +15,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t ${{ secrets.DOCKER_REGISTRY_USER}}/openjdk-24-jdk-slim:latest -f openjdk-24-jdk .
+          docker build -t ${{ secrets.DOCKER_REGISTRY_USER}}/gitleaks:latest -f gitleaks .
         working-directory: dev-sec-ops/base-images
 
       - name: Login to Docker Hub
@@ -26,4 +26,4 @@ jobs:
 
       - name: Push Docker Image
         run: |
-          docker push ${{secrets.DOCKER_REGISTRY_USER}}/openjdk-24-jdk-slim:latest
+          docker push ${{secrets.DOCKER_REGISTRY_USER}}/gitleaks:latest
