@@ -5,7 +5,7 @@ FROM tambenikita391/openjdk-24-jdk
 WORKDIR /app
 
 # Copy the application JAR file
-COPY hospiital-management-0.0.1-SNAPSHOT.jar /app/patient-service.jar
+COPY target/hospiital-management-0.0.1-SNAPSHOT.jar /app/patient-service.jar
 
 # Start the application
 CMD ["java", "-jar","patient-service.jar"]
