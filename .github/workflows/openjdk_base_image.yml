@@ -28,3 +28,5 @@ jobs:
       - name: Push Docker Image
         run: |
           docker push ${{secrets.DOCKER_REGISTRY_USER}}/openjdk-24-jdk:latest
+
+          
