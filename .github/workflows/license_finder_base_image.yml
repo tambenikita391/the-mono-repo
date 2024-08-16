@@ -1,5 +1,5 @@
 
-name: Build and Push Docker Image
+name: Build and Push lincense-finder Docker Image
 
 on:
   push:
@@ -26,5 +26,5 @@ jobs:
           password: ${{ secrets.DOCKER_REGISTRY_PAT}}
 
       - name: Push Docker Image
-        run: |
+        run: 
           docker push ${{secrets.DOCKER_REGISTRY_USER}}/license-finder:latest
