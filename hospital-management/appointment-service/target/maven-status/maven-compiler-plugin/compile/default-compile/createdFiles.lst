@@ -1,0 +1,12 @@
+org\appointment\common\ResponseCode.class
+org\appointment\controller\AppointManagementController.class
+org\appointment\dto\AppointmentResponse.class
+org\appointment\AppointmentServiceMain.class
+org\appointment\repo\AppointmentRepository.class
+org\appointment\dto\AppointmentRequest.class
+org\appointment\service\AppointmentManagementServiceImpl.class
+org\appointment\entity\Appointment.class
+org\appointment\common\RandomStringGenerator.class
+org\appointment\common\CustomIdGenerator.class
+org\appointment\service\AppointmentManagementService.class
+org\appointment\entity\Appointment$Status.class
