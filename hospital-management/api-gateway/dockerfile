@@ -1,7 +1,5 @@
-
-# Use a base image with the required runtime environment
 # Use a base image with JDK
-FROM openjdk:11-jdk-slim
+FROM tambenikita391/openjdk-24-jdk
 
 # Set the working directory inside the container
 WORKDIR /app
