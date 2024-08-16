@@ -7,7 +7,7 @@ FROM tambenikita391/openjdk-24-jdk
 WORKDIR /app
 
 # Copy the application JAR file
-COPY target/directory-service-0.0.1-SNAPSHOT.jar /app/directory-service.jar
+COPY directory-service-0.0.1-SNAPSHOT.jar /app/directory-service.jar
 
 # Start the application
 CMD ["java", "-jar","directory-service.jar"]
