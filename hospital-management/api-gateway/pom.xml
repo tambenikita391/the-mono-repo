@@ -27,10 +27,19 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.10.1</version> <!-- updated version -->
+				<version>3.11.0</version>
 				<configuration>
 					<release>17</release>
+					<compilerId>jdt</compilerId>
+					<compilerArgument>-XDignore.symbol.file</compilerArgument>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.eclipse.jdt.core.compiler</groupId>
+						<artifactId>ecj</artifactId>
+						<version>4.22.0</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 			<plugin>
 				<groupId>io.fabric8</groupId>
