@@ -6,8 +6,8 @@
 	<artifactId>hospital-mgmt-api-gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
-		<maven.compiler.target>17</maven.compiler.target>
-		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+		<maven.compiler.source>11</maven.compiler.source>
 	</properties>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -23,13 +23,19 @@
 		</dependency>
 	</dependencies>
 	<build>
-        <plugins>
-            
-			 <plugin>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.11.0</version>
+				<configuration>
+					<release>11</release>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			
-        </plugins>
-    </build>
+		</plugins>
+	</build>
 </project>
