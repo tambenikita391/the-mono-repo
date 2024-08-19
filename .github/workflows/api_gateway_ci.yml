@@ -4,7 +4,7 @@ name: Build and Push Docker Images
 on:
   push:
     paths:
-      - hospital-management/**
+      - hospital-management/api-gateway/**
 
 jobs:
   build-and-push:
