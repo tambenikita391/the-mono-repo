@@ -49,24 +49,30 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>build-image-no-fork</goal>
-						</goals>
-					</execution>
-				</executions>
+				<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.44.0</version>
 				<configuration>
-					<image>
-						<name>
-							docker.io/zodgevv/${project.artifactId}:${project.version}</name>
-						<publish>false</publish>
-					</image>
+					<images>
+						<image>
+							<name>${project.artifactId}:${project.version}</name>
+						</image>
+					</images>
+					<build>
+						<dockerFile>
+							${project.basedir}/src/main/docker/Dockerfile</dockerFile>
+						<contextDir>${project.basedir}/src/main/docker</contextDir>
+						<tags>
+							<tag>${project.version}</tag>
+						</tags>
+					</build>
+					<push>
+						<tagLatest>true</tagLatest>
+					</push>
 				</configuration>
 			</plugin>
+
 		</plugins>
 	</build>
 </project>
