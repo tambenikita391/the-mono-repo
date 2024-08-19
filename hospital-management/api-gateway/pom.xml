@@ -24,7 +24,15 @@
 	</dependencies>
 	<build>
 		<plugins>
-				<plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.10.1</version> <!-- updated version -->
+				<configuration>
+					<release>17</release>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>io.fabric8</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.44.0</version>
@@ -46,8 +54,7 @@
 						<tagLatest>true</tagLatest>
 					</push>
 				</configuration>
-			</plugin>		
-
+			</plugin>
 		</plugins>
 	</build>
 </project>
