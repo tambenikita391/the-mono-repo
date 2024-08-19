@@ -14,7 +14,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-
+      - name: Build JAR file using Maven
+        run: |
+          mvn clean install
+        working-directory: hospital-management/api-gateway
+        
       - name: Build Docker Image for api-gateway
         run: 
           docker build -t ${{ secrets.DOCKER_REGISTRY_USER}}/api-gateway:latest -f dockerfile .
