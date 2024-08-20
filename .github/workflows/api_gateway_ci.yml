@@ -47,7 +47,7 @@ jobs:
 
       - name: Build code and create docker images
         run: |
-          mvn clean install
+          mvn install
           mvn docker:build -Dimage.registry=${{secrets.CONTAINER_REGISTRY_URL}} -Dimage.tag=$GITHUB_REF_NAME
         working-directory: hospital-management/api-gateway
 
