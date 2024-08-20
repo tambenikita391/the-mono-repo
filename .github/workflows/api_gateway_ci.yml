@@ -25,6 +25,13 @@ jobs:
         run:
           cd hospital-management/api-gateway && mvn clean install docker:build -Dimage.registry=${{secrets.DOCKER_REGISTRY_USER}} -Dimage.tag=$GITHUB_REF_NAME
 
+      - name: Log in to GitHub Docker Registry
+        uses: docker/login-action@v2
+        with:
+          username: ${{secrets.DOCKER_REGISTRY_USER}}
+          password: ${{secrets.DOCKER_REGISTRY_PAT}}
+            
+
       - name: Push Docker Image for api-gateway
         run: 
           docker push ${{secrets.DOCKER_REGISTRY_USER}}/api-gateway:latest
