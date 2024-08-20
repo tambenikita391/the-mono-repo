@@ -1,0 +1,32 @@
+
+name: Build and Push Docker Images
+
+on:
+  push:
+    paths:
+      - hospital-management/api-gateway/**
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Build JAR file using Maven
+        run: |
+          mvn clean install
+        working-directory: hospital-management/api-gateway
+        
+      - name: Build Docker Image for api-gateway
+        run: 
+          docker build -t ${{ secrets.DOCKER_REGISTRY_USER}}/api-gateway:latest -f dockerfile .
+        working-directory: hospital-management/api-gateway
+
+      - name: Push Docker Image for api-gateway
+        run: 
+          docker push ${{secrets.DOCKER_REGISTRY_USER}}/api-gateway:latest
+
+      
+
