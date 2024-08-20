@@ -8,3 +8,4 @@ COPY target/directory-service-0.0.1-SNAPSHOT.jar /app/directory-service.jar
 
 # Start the application
 CMD ["java", "-jar","directory-service.jar"]
+
