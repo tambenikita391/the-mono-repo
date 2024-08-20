@@ -1,8 +1,9 @@
 package org.patient.controller;
 
+import jakarta.validation.Valid;
 import org.patient.dto.PatientRequest;
 import org.patient.dto.PatientResponse;
-import org.patient.service.PatientManagementServiceImpl;
+import org.patient.service.PatientMnagementServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,43 +12,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.validation.Valid;
-
 @RestController
 public class PatientManagementController {
 
-  @Autowired PatientManagementServiceImpl patientManagementServiceImpl;
+  @Autowired PatientMnagementServiceImpl patientManagementServiceImpl;
 
-  @PostMapping(
-      path = "/api/v1/patient/add",
-      consumes = {"application/json", "application/xml"},
-      produces = {"application/json", "application/xml"})
-  public PatientResponse addPatient(@Valid @RequestBody PatientRequest request) {
-    return patientManagementServiceImpl.addPatientDetails(request);
+  @PostMapping("/add/patient")
+  public PatientResponse addPatientData(@Valid @RequestBody PatientRequest request) {
+    return patientManagementServiceImpl.addPatients(request);
   }
 
-  @GetMapping(
-      path = "/api/v1/patient/{patientId}",
-      consumes = {"application/json", "application/xml"},
-      produces = {"application/json", "application/xml"})
-  public PatientResponse searchPatientById(@PathVariable String patientId) {
-    return patientManagementServiceImpl.searchPatientById(patientId);
+  @GetMapping("/search/patient/{name}")
+  public PatientResponse searchPatientData(@PathVariable String name) {
+    return patientManagementServiceImpl.searchPatients(name);
   }
 
-  @PostMapping(
-      path = "/api/v1/patient/{patientId}",
-      consumes = {"application/json", "application/xml"},
-      produces = {"application/json", "application/xml"})
-  public PatientResponse updatePatient(
-      @PathVariable String patientId, @RequestBody PatientRequest request) {
-    return patientManagementServiceImpl.updatePatientDetails(patientId, request);
+  @PostMapping("/edit/patient/{patientId}")
+  public PatientResponse editPatientData(
+      @RequestBody PatientRequest request, @PathVariable String patientId) {
+    return patientManagementServiceImpl.editPatients(request, patientId);
   }
 
-  @DeleteMapping(
-      path = "/api/v1/patient/{patientId}",
-      consumes = {"application/json", "application/xml"},
-      produces = {"application/json", "application/xml"})
-  public String deletePatient(@PathVariable String patientId) {
-    return patientManagementServiceImpl.deletePatientDetails(patientId);
+  @DeleteMapping("/delete/patient/{name}")
+  public PatientResponse deletePatientData(@PathVariable String name) {
+    return patientManagementServiceImpl.deletePatient(name);
   }
 }

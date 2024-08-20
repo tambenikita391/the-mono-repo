@@ -1,12 +1,9 @@
 package org.patient.common;
 
-import java.security.SecureRandom;
-
-import org.hibernate.engine.spi.SharedSessionContractImplementor;
-import org.hibernate.id.IdentifierGenerator;
-
 import java.io.Serializable;
 import java.util.Random;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
+import org.hibernate.id.IdentifierGenerator;
 
 public class RandomStringGenerator implements IdentifierGenerator {
 

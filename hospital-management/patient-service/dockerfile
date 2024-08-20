@@ -1,12 +1,11 @@
-# Use a base image with JDK
-FROM tambenikita391/openjdk-24-jdk
 
-# Set the working directory inside the container
+# Base WORKDIR => /
+FROM openjdk:24-jdk-slim
+
 WORKDIR /app
 
 # Copy the application JAR file
-COPY . /app
+COPY target/patient-service-0.0.1-SNAPSHOT.jar /app/patient-service.jar
 
 # Start the application
 CMD ["java", "-jar","patient-service.jar"]
-

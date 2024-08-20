@@ -1,18 +1,14 @@
 package org.patient.service;
 
-import java.util.List;
-
 import org.patient.dto.PatientRequest;
 import org.patient.dto.PatientResponse;
-import org.patient.entity.Patient;
 
 public interface PatientManagementService {
-  public PatientResponse addPatientDetails(PatientRequest patientRequest);
+  public PatientResponse addPatients(PatientRequest request);
 
-  public PatientResponse searchPatientById(String patientId);
+  public PatientResponse searchPatients(String patientName);
 
-  public PatientResponse updatePatientDetails(String patientId, PatientRequest patientRequest);
+  public PatientResponse editPatients(PatientRequest request, String patientId);
 
-  public String deletePatientDetails(String patientId);
-
+  public PatientResponse deletePatient(String patientId);
 }

@@ -1,21 +1,16 @@
 package org.patient.dto;
 
-import org.springframework.stereotype.Component;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.springframework.stereotype.Component;
 
 @Component
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PatientResponse {
-  private String patientNameInEnglish;
-  private String patientNameInMarathi;
-  private String mobileNumber;
+  private String patientName;
   private String gender;
-  private String birthDate;
-  private String firstExaminationDate;
-  private String patientId;
-
+  private String mobileNumber;
   private String address;
+  private String age;
   private String status;
   private String message;
 
@@ -35,52 +30,12 @@ public class PatientResponse {
     this.message = message;
   }
 
-  public String getPatientNameInEnglish() {
-    return patientNameInEnglish;
+  public String getPatientName() {
+    return patientName;
   }
 
-  public void setPatientNameInEnglish(String patientNameInEnglish) {
-    this.patientNameInEnglish = patientNameInEnglish;
-  }
-
-  public String getPatientNameInMarathi() {
-    return patientNameInMarathi;
-  }
-
-  public void setPatientNameInMarathi(String patientNameInMarathi) {
-    this.patientNameInMarathi = patientNameInMarathi;
-  }
-
-  public String getMobileNumber() {
-    return mobileNumber;
-  }
-
-  public void setMobileNumber(String mobileNumber) {
-    this.mobileNumber = mobileNumber;
-  }
-
-  public String getBirthDate() {
-    return birthDate;
-  }
-
-  public void setBirthDate(String birthDate) {
-    this.birthDate = birthDate;
-  }
-
-  public String getFirstExaminationDate() {
-    return firstExaminationDate;
-  }
-
-  public void setFirstExaminationDate(String firstExaminationDate) {
-    this.firstExaminationDate = firstExaminationDate;
-  }
-
-  public String getAddress() {
-    return address;
-  }
-
-  public void setAddress(String address) {
-    this.address = address;
+  public void setPatientName(String patientName) {
+    this.patientName = patientName;
   }
 
   public String getGender() {
@@ -91,11 +46,27 @@ public class PatientResponse {
     this.gender = gender;
   }
 
-  public String getPatientId() {
-    return patientId;
+  public String getMobileNumber() {
+    return mobileNumber;
   }
 
-  public void setPatientId(String patientId) {
-    this.patientId = patientId;
+  public void setMobileNumber(String mobileNumber) {
+    this.mobileNumber = mobileNumber;
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public String getAge() {
+    return age;
+  }
+
+  public void setAge(String age) {
+    this.age = age;
   }
 }
