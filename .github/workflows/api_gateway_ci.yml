@@ -13,11 +13,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-
-      - name: Build JAR file using Maven
-        run: |
-          mvn clean install
-        working-directory: hospital-management/api-gateway
         
       - name: Build code and create docker images
         run: mvn clean install docker:build -Dimage.registry=${{secrets.DOCKER_REGISTRY_USER}} -Dimage.tag=$GITHUB_REF_NAME
