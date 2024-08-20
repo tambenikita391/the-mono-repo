@@ -19,6 +19,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Change permissions of target directory
+        run: chmod -R 777 hospital-management/api-gateway/target
+        working-directory: hospital-management/api-gateway
+
       - name: Delete target directory
         run: rm -rf hospital-management/api-gateway/target
         working-directory: hospital-management/api-gateway
