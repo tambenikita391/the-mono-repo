@@ -22,6 +22,8 @@ jobs:
 
       - name: Perform google formatter check
         run: mvn com.spotify.fmt:fmt-maven-plugin:format
+        working-directory: hospital-management/case-service
+
 
       - name: GitLeaks Scan
         uses: zricethezav/gitleaks-action@v1.3.0
