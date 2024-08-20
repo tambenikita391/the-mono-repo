@@ -18,10 +18,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-
-      - name: Perform google formatter 
-        run: mvn com.spotify.fmt:fmt-maven-plugin:format
-        working-directory: hospital-management/api-gateway
           
       - name: Perform google formatter check
         run: mvn com.spotify.fmt:fmt-maven-plugin:check
@@ -38,6 +34,13 @@ jobs:
         if: false
         run: mvn org.owasp:dependency-check-maven:check
 
+      - name: License finder
+        run: |
+          cd hospital-management/api-gateway
+          docker pull tambenikita391/license-finder:latest
+          docker run -v "$(pwd):/scan" tambenikita391/license-finder:latest
+        continue-on-error: true
+        
       - name: Build code and create docker images
         run: |
           mvn clean install
