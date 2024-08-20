@@ -33,6 +33,9 @@ jobs:
             
 
       - name: Push Docker Image for api-gateway
+        env:
+          IMAGE_NAME: ${{secrets.DOCKER_REGISTRY_USER}}/api-gateway
+          IMAGE_TAG: $GITHUB_REF_NAME
         run: |
-          docker tag ${{secrets.DOCKER_REGISTRY_USER}}/api-gateway:$GITHUB_REF_NAME ${{secrets.DOCKER_REGISTRY_USER}}/api-gateway:latest
-          docker push ${{secrets.DOCKER_REGISTRY_USER}}/api-gateway:latest
+          docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest
+          docker push ${IMAGE_NAME}:latest
