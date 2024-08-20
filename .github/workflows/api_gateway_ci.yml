@@ -15,7 +15,9 @@ jobs:
         uses: actions/checkout@v3
         
       - name: Build code and create docker images
-        run: mvn clean install docker:build -Dimage.registry=${{secrets.DOCKER_REGISTRY_USER}} -Dimage.tag=$GITHUB_REF_NAME
+        run:
+          cd hospital-management/api-gateway
+          mvn clean install docker:build -Dimage.registry=${{secrets.DOCKER_REGISTRY_USER}} -Dimage.tag=$GITHUB_REF_NAME
 
       - name: Push Docker Image for api-gateway
         run: 
