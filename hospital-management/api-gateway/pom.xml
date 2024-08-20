@@ -8,11 +8,8 @@
 	<properties>
 		<maven.compiler.target>17</maven.compiler.target>
 		<maven.compiler.source>17</maven.compiler.source>
-<<<<<<< HEAD
-=======
 		<image.registry>dnyanyog.com</image.registry>
 		<image.tag>latest</image.tag>
->>>>>>> eed4f1e537c6573512fe2148967d4b6364403eef
 	</properties>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -79,8 +76,7 @@
 							<name>
 								${image.registry}/${project.artifactId}:${image.tag}</name>
 							<build>
-								<dockerFile>
-									${project.basedir}/dockerfile</dockerFile>
+								<dockerFile>${project.basedir}/dockerfile</dockerFile>
 								<args>
 									<imageName>${project.artifactId}-latest</imageName>
 								</args>
@@ -91,10 +87,4 @@
 			</plugin>
 		</plugins>
 	</build>
-<<<<<<< HEAD
-
 </project>
-=======
-					
-</project>
->>>>>>> eed4f1e537c6573512fe2148967d4b6364403eef
