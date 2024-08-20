@@ -1,8 +1,7 @@
 
-# Use a base image with the required runtime environment
-FROM tambenikita391/openjdk-24-jdk
+# Base WORKDIR => /
+FROM openjdk:24-jdk-slim
 
-# Set the working directory inside the container
 WORKDIR /app
 
 # Copy the application JAR file
