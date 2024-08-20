@@ -18,7 +18,29 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          
+      - name: Perform google formatter check
+        run: mvn com.spotify.fmt:fmt-maven-plugin:check
+        working-directory: hospital-management/api-gateway
 
+      - name: GitLeaks Scan
+        uses: zricethezav/gitleaks-action@v1.3.0
+
+      - name: OSS Scan
+        run: mvn ossindex:audit
+        continue-on-error: true
+
+      - name: OWASP Scan
+        if: false
+        run: mvn org.owasp:dependency-check-maven:check
+
+      - name: License finder
+        run: |
+          cd hospital-management/api-gateway
+          docker pull tambenikita391/license-finder:latest
+          docker run -v "$(pwd):/scan" tambenikita391/license-finder:latest
+        continue-on-error: true
+        
       - name: Build code and create docker images
         run: |
           mvn clean install
