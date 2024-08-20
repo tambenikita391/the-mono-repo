@@ -30,8 +30,7 @@ jobs:
         working-directory: hospital-management/api-gateway
 
       - name: Clean up Target Directory
-        run: |
-          rm -rf hospital-management/api-gateway/target
+        run: rm -rf hospital-management/api-gateway/target
 
       - name: Perform Google Formatter Check
         run: mvn com.spotify.fmt:fmt-maven-plugin:check
@@ -47,12 +46,6 @@ jobs:
       - name: OWASP Scan
         if: false
         run: mvn org.owasp:dependency-check-maven:check
-
-      - name: License Finder
-        run: |
-          docker pull tambenikita391/license-finder:latest
-          docker run --rm -v "$(pwd)/hospital-management/api-gateway:/scan" tambenikita391/license-finder:latest
-        continue-on-error: true
 
       - name: Build Code and Create Docker Images
         run: |
@@ -72,3 +65,15 @@ jobs:
       - name: Push Docker Images
         run: |
           docker push ${{secrets.CONTAINER_REGISTRY_URL}}/api-gateway:$GITHUB_REF_NAME
+
+  license-finder-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Run License Finder Check
+        run: |
+          docker pull tambenikita391/license-finder:latest
+          docker run --rm -v "$(pwd)/hospital-management/api-gateway:/scan" tambenikita391/license-finder:latest
