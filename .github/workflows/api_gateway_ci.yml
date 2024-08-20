@@ -19,7 +19,12 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Perform google formatter check
+      - name: Clean up target directory
+        run: |
+          sudo rm -rf hospital-management/api-gateway/target
+        working-directory: hospital-management/api-gateway
+
+      - name: Perform Google Formatter Check
         run: mvn com.spotify.fmt:fmt-maven-plugin:check
         working-directory: hospital-management/api-gateway
 
@@ -39,17 +44,6 @@ jobs:
           docker pull tambenikita391/license-finder:latest
           docker run --rm -v "$(pwd)/hospital-management/api-gateway:/scan" tambenikita391/license-finder:latest
         continue-on-error: true
-
-      - name: Clean up target directory manually
-        run: |
-          sudo rm -rf hospital-management/api-gateway/target
-        working-directory: hospital-management/api-gateway
-
-      - name: Build code and create Docker images
-        run: |
-          mvn clean install -X
-          mvn docker:build -Dimage.registry=${{secrets.CONTAINER_REGISTRY_URL}} -Dimage.tag=$GITHUB_REF_NAME
-        working-directory: hospital-management/api-gateway
 
       - name: Build code and create Docker images
         run: |
