@@ -22,7 +22,7 @@ jobs:
 
       - name: Perform google formatter check
         run: mvn com.spotify.fmt:fmt-maven-plugin:format
-        working-directory: hospital-management/api-gateway
+        working-directory: hospital-management/patient-service
 
 
       - name: GitLeaks Scan
