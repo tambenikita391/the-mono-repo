@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="1018.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="case_management_dashboard.CaseManagementScreenController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f59622" height="90.0" stroke="BLACK" strokeType="INSIDE" width="1018.0" />
+      <Label layoutX="126.0" layoutY="2.0" prefHeight="97.0" prefWidth="341.0" text="Case Management" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="879.0" layoutY="45.0" prefHeight="36.0" prefWidth="145.0" text="Nikita (Admin)" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="logOutButton" layoutX="51.0" layoutY="564.0" mnemonicParsing="false" onAction="#logOut" prefHeight="40.0" prefWidth="210.0" text="Logout">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Button>
+      <Button fx:id="dashBoardButton" layoutX="51.0" layoutY="152.0" mnemonicParsing="false" onAction="#dashBoard" prefHeight="56.0" prefWidth="210.0" style="-fx-border-color: #ffffff;" text="Dashboard">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="patientsButton" layoutX="51.0" layoutY="236.0" mnemonicParsing="false" onAction="#patients" prefHeight="56.0" prefWidth="210.0" style="-fx-border-color: #ffffff;" text="Patients">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="caseButton" layoutX="51.0" layoutY="321.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="210.0" style="-fx-border-color: #ffffff; -fx-background-color: #f59622;" text="Cases">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="appointmentsButton" layoutX="51.0" layoutY="394.0" mnemonicParsing="false" onAction="#appointments" prefHeight="56.0" prefWidth="210.0" style="-fx-border-color: #ffffff;" text="Appointments">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="usersButton" layoutX="51.0" layoutY="471.0" mnemonicParsing="false" onAction="#users" prefHeight="56.0" prefWidth="210.0" text="Users" textFill="#1b1a1a">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="532.0" layoutX="296.0" layoutY="98.0" stroke="#cfcaca" strokeDashOffset="20.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="2.0" width="655.0" />
+      <Button fx:id="addCase" layoutX="418.0" layoutY="189.0" mnemonicParsing="false" onAction="#addCases" prefHeight="56.0" prefWidth="470.0" style="-fx-background-color: #f59622;" text="Add Case" textFill="#141414">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="searchCase" layoutX="418.0" layoutY="536.0" mnemonicParsing="false" onAction="#searchCases" prefHeight="56.0" prefWidth="470.0" style="-fx-border-color: #ffffff; -fx-background-color: #f59622;" text="Search Case">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="deleteCase" layoutX="418.0" layoutY="422.0" mnemonicParsing="false" onAction="#deleteCases" prefHeight="56.0" prefWidth="470.0" style="-fx-border-color: #ffffff; -fx-background-color: #f59622;" text="Delete Case">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="editCase" layoutX="418.0" layoutY="309.0" mnemonicParsing="false" onAction="#editCases" prefHeight="56.0" prefWidth="470.0" style="-fx-border-color: #ffffff; -fx-background-color: #f59622;" text="Edit Case">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <Circle fill="#1b0e72" layoutX="858.0" layoutY="65.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label layoutX="851.0" layoutY="50.0" text="N" textFill="#f2f0f0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="8.0" layoutY="5.0" prefHeight="36.0" prefWidth="118.0" text="जीवयुर्भवति  ">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="803.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="add_patients.AddPatientScreenController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f59622" height="90.0" stroke="BLACK" strokeType="INSIDE" width="1150.0" />
+      <Label layoutX="119.0" layoutY="12.0" prefHeight="84.0" prefWidth="318.0" text=" Add Patient" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="659.0" layoutX="290.0" layoutY="127.0" stroke="#f5efef" strokeType="INSIDE" style="visibility: #1e0202;" width="835.0" />
+      <Label layoutX="983.0" layoutY="30.0" prefHeight="36.0" prefWidth="210.0" text="Nikita (Admin)" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="logOutButton" layoutX="60.0" layoutY="702.0" mnemonicParsing="false" onAction="#logOut" prefHeight="40.0" prefWidth="199.0" style="-fx-border-color: #ffffff; -fx-background-color: orange;" text="Logout">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Button>
+      <Button fx:id="dashBoardText" layoutX="51.0" layoutY="152.0" mnemonicParsing="false" onAction="#dashBoard" prefHeight="56.0" prefWidth="216.0" style="-fx-border-color: #ffffff;" text="Dashboard">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="caseText" layoutX="48.0" layoutY="333.0" mnemonicParsing="false" onAction="#cases" prefHeight="56.0" prefWidth="216.0" style="-fx-border-color: #ffffff;" text="Cases">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="appointmentText" layoutX="48.0" layoutY="405.0" mnemonicParsing="false" onAction="#appointments" prefHeight="56.0" prefWidth="216.0" style="-fx-border-color: #ffffff;" text="Appointments">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="userText" layoutX="51.0" layoutY="485.0" mnemonicParsing="false" onAction="#users" prefHeight="56.0" prefWidth="216.0" style="-fx-border-color: #ffffff;" text="Users">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="PatientText" layoutX="48.0" layoutY="249.0" mnemonicParsing="false" onAction="#patients" prefHeight="56.0" prefWidth="216.0" style="-fx-background-color: #f59622;" text="Patients" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="700.0" layoutX="288.0" layoutY="94.0" stroke="#cfcaca" strokeDashOffset="20.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="2.0" width="827.0" />
+      <Button fx:id="cancleButton" layoutX="441.0" layoutY="725.0" mnemonicParsing="false" onAction="#cancle" prefHeight="47.0" prefWidth="216.0" style="-fx-border-color: #dd1818; -fx-background-color: #ffffff; -fx-background-radius: 14;" text=" Cancel" textFill="#dd1818">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <TextField fx:id="firstExaminationdate" layoutX="576.0" layoutY="548.0" prefHeight="47.0" prefWidth="512.0" promptText="yyyy-mm-dd" style="-fx-background-radius: 14;" />
+      <TextField fx:id="mobileNumber" layoutX="570.0" layoutY="300.0" prefHeight="47.0" prefWidth="512.0" style="-fx-background-radius: 14;" />
+      <TextField fx:id="patientNameInMarathi" layoutX="570.0" layoutY="212.0" prefHeight="47.0" prefWidth="512.0" style="-fx-background-radius: 14;" />
+      <TextField fx:id="patientNameInEnglish" layoutX="570.0" layoutY="129.0" prefHeight="47.0" prefWidth="512.0" style="-fx-background-radius: 14;" />
+      <Button fx:id="saveButton" layoutX="843.0" layoutY="725.0" mnemonicParsing="false" onAction="#save" prefHeight="47.0" prefWidth="216.0" style="-fx-background-color: #33b535; -fx-background-radius: 14;" text=" Save" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Text layoutX="326.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Name(English)" wrappingWidth="222.6708984375">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="326.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Name (Marathi)" wrappingWidth="222.6708984375">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="330.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile Number" wrappingWidth="230.6708984375">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="330.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" wrappingWidth="230.6708984375">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="326.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birth Date" wrappingWidth="222.6708984375">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="address" layoutX="573.0" layoutY="615.0" prefHeight="47.0" prefWidth="512.0" style="-fx-background-radius: 14;" />
+      <Text layoutX="330.0" layoutY="646.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" wrappingWidth="222.6708984375">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="birthDate" layoutX="573.0" layoutY="466.0" prefHeight="47.0" prefWidth="512.0" promptText="yyyy-mm-dd" style="-fx-background-radius: 14;" />
+      <Text layoutX="326.0" layoutY="580.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Examination Date" wrappingWidth="222.6708984375">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Circle fill="#3b0d8a" layoutX="964.0" layoutY="47.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label layoutX="957.0" layoutY="34.0" text="N" textFill="#f8f5f5">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="gender" layoutX="570.0" layoutY="382.0" prefHeight="47.0" prefWidth="512.0" style="-fx-background-radius: 14;" />
+      <Label fx:id="userMessage" layoutX="352.0" layoutY="670.0" prefHeight="47.0" prefWidth="678.0" textFill="#15a43e">
+         <font>
+            <Font size="25.0" />
+         </font></Label>
+      <Label layoutX="10.0" layoutY="12.0" prefHeight="21.0" prefWidth="101.0" text="जीवयुर्भवति  ">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

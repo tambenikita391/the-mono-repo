@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="992.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointment_management_dashboard.AppointmentManagementScreenController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f59622" height="90.0" stroke="BLACK" strokeType="INSIDE" width="992.0" />
+      <Label layoutX="112.0" prefHeight="97.0" prefWidth="571.0" text="Appointment Management" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="853.0" layoutY="45.0" prefHeight="36.0" prefWidth="145.0" text="Nikita (Admin)" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="logOutButton" layoutX="51.0" layoutY="564.0" mnemonicParsing="false" onAction="#logOut" prefHeight="40.0" prefWidth="210.0" text="Logout">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Button>
+      <Button fx:id="dashBoardButton" layoutX="51.0" layoutY="152.0" mnemonicParsing="false" onAction="#dashBoard" prefHeight="56.0" prefWidth="210.0" style="-fx-border-color: #ffffff;" text="Dashboard">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="patientsButton" layoutX="51.0" layoutY="236.0" mnemonicParsing="false" onAction="#patients" prefHeight="56.0" prefWidth="210.0" style="-fx-border-color: #ffffff;" text="Patients">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="casesButton" layoutX="51.0" layoutY="321.0" mnemonicParsing="false" onAction="#cases" prefHeight="56.0" prefWidth="210.0" style="-fx-border-color: #ffffff;" text="Cases">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="appointmentsButton" layoutX="51.0" layoutY="394.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="210.0" style="-fx-border-color: #ffffff; -fx-background-color: #f59622;" text="Appointments">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="usersButton" layoutX="51.0" layoutY="471.0" mnemonicParsing="false" onAction="#users" prefHeight="56.0" prefWidth="210.0" text="Users" textFill="#1b1a1a">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="499.0" layoutX="296.0" layoutY="108.0" stroke="#cfcaca" strokeDashOffset="20.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="2.0" width="676.0" />
+      <Button fx:id="addAppointment" layoutX="409.0" layoutY="169.0" mnemonicParsing="false" onAction="#addAppointments" prefHeight="56.0" prefWidth="470.0" style="-fx-background-radius: 14;" text="Add Appointment" textFill="#2c2b2b">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="searchAppointment" layoutX="409.0" layoutY="450.0" mnemonicParsing="false" onAction="#searchAppointments" prefHeight="56.0" prefWidth="470.0" style="-fx-background-radius: 14;" text="Search Appointment">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="deleteAppointment" layoutX="409.0" layoutY="355.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="470.0" style="-fx-background-radius: 14;" text="Delete Appointment">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="editAppointment" layoutX="409.0" layoutY="264.0" mnemonicParsing="false" onAction="#editAppointments" prefHeight="56.0" prefWidth="470.0" style="-fx-background-radius: 14;" text="Edit Appointment">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <Label layoutX="14.0" layoutY="8.0" prefHeight="21.0" prefWidth="97.0" text="जीवयुर्भवति  ">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Circle fill="#210b72" layoutX="837.0" layoutY="65.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label layoutX="830.0" layoutY="50.0" text="N" textFill="#f8f7f7">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

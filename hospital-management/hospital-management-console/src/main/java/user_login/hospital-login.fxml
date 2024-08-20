@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="710.0" prefWidth="1159.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user_login.LoginScreenController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="713.0" layoutX="702.0" layoutY="-3.0" stroke="BLACK" strokeType="INSIDE" width="462.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startY="0.35467980295566504">
+               <stops>
+                  <Stop color="#e37910e8" />
+                  <Stop color="#e37910e8" offset="0.00625" />
+                  <Stop color="#e37c0ed7" offset="0.51875" />
+                  <Stop color="#de78126f" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Label layoutX="742.0" layoutY="415.0" prefHeight="47.0" prefWidth="418.0" text="POSITIVE MIND" textFill="#f8f4f4">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font></Label>
+      <Label layoutX="861.0" layoutY="498.0" prefHeight="45.0" prefWidth="195.0" text="POSITIVE LIFE" textFill="#f2ecec">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font></Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="713.0" layoutY="-3.0" stroke="BLACK" strokeType="INSIDE" width="702.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#8c8282ba" />
+                  <Stop color="#8c8282ba" offset="0.00625" />
+                  <Stop color="#8c8282" offset="0.940625" />
+                  <Stop color="#e37910e8" offset="0.9500000000000001" />
+                  <Stop color="#8c8282" offset="0.9981249999999999" />
+                  <Stop color="#e37910e8" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Button fx:id="loginButton" layoutX="182.0" layoutY="438.0" mnemonicParsing="false" onAction="#login" prefHeight="47.0" prefWidth="315.0" style="-fx-background-color: orange;" text="Next" textFill="#fcfaf9">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="277.0" layoutY="193.0" prefHeight="38.0" prefWidth="106.0" text="Login" textFill="#222121">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="278.0" layoutY="520.0" text="जीवयुर्भवति  " textFill="#1a6534">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="25.0" />
+         </font>
+      </Label>
+      <Separator layoutX="168.0" layoutY="406.0" prefHeight="0.0" prefWidth="343.0" style="-fx-border-color: black;" />
+      <ImageView fitHeight="170.0" fitWidth="281.0" layoutX="806.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@./mortal&amp;pestle.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="800.0" layoutY="462.0" text="POSITIVE VIBES" textFill="#f2ecec">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Line endX="100.0" layoutX="907.0" layoutY="577.0" scaleY="2.0" startX="-100.0" />
+      <PasswordField fx:id="mobile" layoutX="179.0" layoutY="320.0" prefHeight="47.0" prefWidth="315.0" promptText="mobile" />
+      <PasswordField fx:id="userName" layoutX="179.0" layoutY="256.0" prefHeight="47.0" prefWidth="315.0" promptText="password" />
+   </children>
+</Pane>
