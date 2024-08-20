@@ -76,7 +76,7 @@
 							<name>
 								${image.registry}/${project.artifactId}:${image.tag}</name>
 							<build>
-								<dockerFile>${project.basedir}/api-gateway/dockerfile</dockerFile>
+								<dockerFile>${project.basedir}/hospital-management/api-gateway/dockerfile<</dockerFile>
 								<args>
 									<imageName>${project.artifactId}-latest</imageName>
 								</args>
