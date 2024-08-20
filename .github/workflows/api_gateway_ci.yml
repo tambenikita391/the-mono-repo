@@ -19,6 +19,16 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Wait Before Cleanup
+        run: sleep 10
+
+      - name: Remove Problematic Files
+        run: |
+          if [ -d "hospital-management/api-gateway/target" ]; then
+            find hospital-management/api-gateway/target -name '*.html' -exec rm -f {} \;
+          fi
+        working-directory: hospital-management/api-gateway
+
       - name: Perform Google Formatter Check
         run: mvn com.spotify.fmt:fmt-maven-plugin:check
         working-directory: hospital-management/api-gateway
@@ -27,7 +37,7 @@ jobs:
         uses: zricethezav/gitleaks-action@v1.3.0
 
       - name: OSS Scan
-        run: mvn ossindex:audit
+        run: mvn org.codehaus.mojo:ossindex-maven-plugin:audit
         continue-on-error: true
 
       - name: OWASP Scan
@@ -40,24 +50,7 @@ jobs:
           docker run --rm -v "$(pwd)/hospital-management/api-gateway:/scan" tambenikita391/license-finder:latest
         continue-on-error: true
 
-      - name: Check target directory
-        run: |
-          if [ -d "hospital-management/api-gateway/target" ]; then
-            echo "Target directory exists"
-            ls -la hospital-management/api-gateway/target
-          else
-            echo "Target directory does not exist"
-          fi
-        working-directory: hospital-management/api-gateway
-
-      - name: Clean target directory manually
-        run: |
-          if [ -d "hospital-management/api-gateway/target" ]; then
-            sudo rm -rf hospital-management/api-gateway/target
-          fi
-        working-directory: hospital-management/api-gateway
-
-      - name: Build code and create Docker images
+      - name: Build Code and Create Docker Images
         run: |
           mvn clean install -X
           mvn docker:build -Dimage.registry=${{secrets.CONTAINER_REGISTRY_URL}} -Dimage.tag=$GITHUB_REF_NAME
@@ -72,6 +65,6 @@ jobs:
           username: ${{secrets.DOCKER_REGISTRY_USER}}
           password: ${{secrets.DOCKER_REGISTRY_PAT}}
 
-      - name: Push Docker images
+      - name: Push Docker Images
         run: |
           docker push ${{secrets.CONTAINER_REGISTRY_URL}}/api-gateway:$GITHUB_REF_NAME
