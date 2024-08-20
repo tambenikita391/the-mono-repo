@@ -1,4 +1,3 @@
-
 name: Build and Push Docker Images
 
 on:
@@ -34,7 +33,5 @@ jobs:
 
       - name: Push Docker Image for api-gateway
         run: 
+          docker tag ${{secrets.DOCKER_REGISTRY_USER}}/api-gateway:$GITHUB_REF_NAME ${{secrets.DOCKER_REGISTRY_USER}}/api-gateway:latest
           docker push ${{secrets.DOCKER_REGISTRY_USER}}/api-gateway:latest
-
-      
-
