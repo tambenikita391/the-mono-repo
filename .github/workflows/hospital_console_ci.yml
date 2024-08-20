@@ -19,6 +19,20 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          
+      - name: Perform google formatter check
+        run: mvn com.spotify.fmt:fmt-maven-plugin:format
+
+      - name: GitLeaks Scan
+        uses: zricethezav/gitleaks-action@v1.3.0
+
+      - name: OSS Scan
+        run: mvn ossindex:audit
+        continue-on-error: true
+
+      - name: OWASP Scan
+        if: false
+        run: mvn org.owasp:dependency-check-maven:check
 
       - name: Build code and create docker image for hospital-management-console
         run: |
