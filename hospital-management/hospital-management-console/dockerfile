@@ -9,3 +9,4 @@ COPY target/hospital-console-0.0.1-SNAPSHOT.jar /app/hospital-console.jar
 
 # Start the application
 CMD ["java", "-jar","hospital-console.jar"]
+
