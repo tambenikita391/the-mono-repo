@@ -3,13 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.dnyanyog</groupId>
-	<artifactId>hospital-mgmt-api-gateway</artifactId>
+	<artifactId>api-gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<maven.compiler.target>17</maven.compiler.target>
 		<maven.compiler.source>17</maven.compiler.source>
-		<image.registry>dnyanyog.org</image.registry>
-		<image.tag>latest</image.tag>
 	</properties>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -76,7 +74,8 @@
 							<name>
 								${image.registry}/${project.artifactId}:${image.tag}</name>
 							<build>
-								<dockerFile>${project.basedir}/dockerfile</dockerFile>
+								<dockerFile>
+									${project.basedir}/dockerfile</dockerFile>
 								<args>
 									<imageName>${project.artifactId}-latest</imageName>
 								</args>
@@ -87,6 +86,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
-				
+
 </project>

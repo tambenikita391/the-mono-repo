@@ -12,13 +12,15 @@ public class RouterConfig {
   public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
     return builder
         .routes()
-        .route("Patient_Service", r -> r.path("/api/v1/patient/**").uri("http://patient-service:8081"))
+        .route(
+            "Patient_Service", r -> r.path("/api/v1/patient/**").uri("http://patient-service:8081"))
         .route("Case_Service", r -> r.path("/api/v1/case/**").uri("http://case-service:8082"))
         .route(
             "Appointment_Service",
             r -> r.path("/api/v1/appointment/**").uri("http://appointment-service:8083"))
         .route(
-            "Directory_Service", r -> r.path("/api/v1/directory/**").uri("http://directory-service:8084"))
+            "Directory_Service",
+            r -> r.path("/api/v1/directory/**").uri("http://directory-service:8084"))
         .route(
             "validate_route",
             r -> r.path("/api/v1/directory/validate/**").uri("http://directory-service:8084"))
