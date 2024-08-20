@@ -1,6 +1,6 @@
 
 # Base WORKDIR => /
-FROM openjdk:24-jdk-slim
+FROM tambenikita391/openjdk-24-jdk
 
 WORKDIR /app
 
