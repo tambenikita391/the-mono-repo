@@ -19,16 +19,6 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Wait before cleanup
-        run: sleep 10
-
-      - name: Remove problematic files if directory exists
-        run: |
-          if [ -d "hospital-management/api-gateway/target" ]; then
-            find hospital-management/api-gateway/target -name '*.html' -exec rm -f {} \;
-          fi
-        working-directory: hospital-management/api-gateway
-
       - name: Perform Google Formatter Check
         run: mvn com.spotify.fmt:fmt-maven-plugin:check
         working-directory: hospital-management/api-gateway
@@ -49,6 +39,23 @@ jobs:
           docker pull tambenikita391/license-finder:latest
           docker run --rm -v "$(pwd)/hospital-management/api-gateway:/scan" tambenikita391/license-finder:latest
         continue-on-error: true
+
+      - name: Check target directory
+        run: |
+          if [ -d "hospital-management/api-gateway/target" ]; then
+            echo "Target directory exists"
+            ls -la hospital-management/api-gateway/target
+          else
+            echo "Target directory does not exist"
+          fi
+        working-directory: hospital-management/api-gateway
+
+      - name: Clean target directory manually
+        run: |
+          if [ -d "hospital-management/api-gateway/target" ]; then
+            sudo rm -rf hospital-management/api-gateway/target
+          fi
+        working-directory: hospital-management/api-gateway
 
       - name: Build code and create Docker images
         run: |
