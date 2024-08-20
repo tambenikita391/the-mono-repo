@@ -8,6 +8,11 @@
 	<properties>
 		<maven.compiler.target>17</maven.compiler.target>
 		<maven.compiler.source>17</maven.compiler.source>
+<<<<<<< HEAD
+=======
+		<image.registry>dnyanyog.com</image.registry>
+		<image.tag>latest</image.tag>
+>>>>>>> eed4f1e537c6573512fe2148967d4b6364403eef
 	</properties>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -86,5 +91,10 @@
 			</plugin>
 		</plugins>
 	</build>
+<<<<<<< HEAD
 
 </project>
+=======
+					
+</project>
+>>>>>>> eed4f1e537c6573512fe2148967d4b6364403eef
