@@ -8,3 +8,4 @@ COPY target/patient-service-0.0.1-SNAPSHOT.jar /app/patient-service.jar
 
 # Start the application
 CMD ["java", "-jar","patient-service.jar"]
+
