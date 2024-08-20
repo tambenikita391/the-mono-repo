@@ -35,3 +35,4 @@ jobs:
           docker tag ${{secrets.DOCKER_REGISTRY_USER}}/api-gateway:$GITHUB_REF_NAME ${{secrets.DOCKER_REGISTRY_USER}}/api-gateway:latest
           docker push ${{secrets.DOCKER_REGISTRY_USER}}/api-gateway:latest
           docker push ${{secrets.DOCKER_REGISTRY_USER}}/api-gateway:$GITHUB_REF_NAME
+          
