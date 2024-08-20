@@ -19,10 +19,8 @@ jobs:
           mvn clean install
         working-directory: hospital-management/api-gateway
         
-      - name: Build Docker Image for api-gateway
-        run: 
-          docker build -t ${{ secrets.DOCKER_REGISTRY_USER}}/api-gateway:latest -f dockerfile .
-        working-directory: hospital-management/api-gateway
+      - name: Build code and create docker images
+        run: mvn clean install docker:build -Dimage.registry=${{secrets.DOCKER_REGISTRY_USER}} -Dimage.tag=$GITHUB_REF_NAME
 
       - name: Push Docker Image for api-gateway
         run: 
