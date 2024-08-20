@@ -21,6 +21,10 @@ jobs:
           distribution: 'temurin'
 
       - name: Perform google formatter check
+        run: mvn com.spotify.fmt:fmt-maven-plugin:format
+        working-directory: hospital-management/patient-service
+
+      - name: Perform google formatter check
         run: mvn com.spotify.fmt:fmt-maven-plugin:check
         working-directory: hospital-management/patient-service
 
