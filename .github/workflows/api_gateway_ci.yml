@@ -18,7 +18,11 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          
+
+      - name: Delete target directory
+        run: rm -rf hospital-management/api-gateway/target
+        working-directory: hospital-management/api-gateway
+
       - name: Perform google formatter check
         run: mvn com.spotify.fmt:fmt-maven-plugin:check
         working-directory: hospital-management/api-gateway
@@ -40,13 +44,13 @@ jobs:
           docker pull tambenikita391/license-finder:latest
           docker run -v "$(pwd):/scan" tambenikita391/license-finder:latest
         continue-on-error: true
-        
+
       - name: Build code and create docker images
         run: |
           mvn clean install
           mvn docker:build -Dimage.registry=${{secrets.CONTAINER_REGISTRY_URL}} -Dimage.tag=$GITHUB_REF_NAME
         working-directory: hospital-management/api-gateway
-        
+
       - name: List Docker Images
         run: docker images
 
@@ -59,6 +63,3 @@ jobs:
       - name: Push docker images
         run: |
          docker push ${{secrets.CONTAINER_REGISTRY_URL}}/api-gateway:$GITHUB_REF_NAME
-         
-         
-         
