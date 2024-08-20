@@ -18,6 +18,10 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      - name: Perform google formatter 
+        run: mvn com.spotify.fmt:fmt-maven-plugin:format
+        working-directory: hospital-management/api-gateway
           
       - name: Perform google formatter check
         run: mvn com.spotify.fmt:fmt-maven-plugin:check
