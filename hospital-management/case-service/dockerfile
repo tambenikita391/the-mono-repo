@@ -10,3 +10,4 @@ COPY target/case-service-0.0.1-SNAPSHOT.jar /app/case-service.jar
 # Start the application
 CMD ["java", "-jar","case-service.jar"]
 
+
