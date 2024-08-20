@@ -29,6 +29,10 @@ jobs:
           fi
         working-directory: hospital-management/api-gateway
 
+      - name: Clean up Target Directory
+        run: |
+          rm -rf hospital-management/api-gateway/target
+
       - name: Perform Google Formatter Check
         run: mvn com.spotify.fmt:fmt-maven-plugin:check
         working-directory: hospital-management/api-gateway
