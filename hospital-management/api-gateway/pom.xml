@@ -2,13 +2,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.dnyanyog</groupId>
-	<artifactId>api-gateway</artifactId>
+	<groupId>com.dnyanyog</groupId>
+	<artifactId>hospital-mgmt-api-gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<maven.compiler.target>17</maven.compiler.target>
 		<maven.compiler.source>17</maven.compiler.source>
-		<image.registry>dnyanyog.org</image.registry>
+		<image.registry>dnyanyog.com</image.registry>
 		<image.tag>latest</image.tag>
 	</properties>
 	<parent>
