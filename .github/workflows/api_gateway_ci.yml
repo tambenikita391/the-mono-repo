@@ -25,6 +25,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Build code and create docker images
+        working-directory: hospital-management/api-gateway
         run: mvn clean install docker:build -Dimage.registry=${{secrets.CONTAINER_REGISTRY_URL}} -Dimage.tag=$GITHUB_REF_NAME
 
       - name: Log in to GitHub Docker Registry
