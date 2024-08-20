@@ -22,8 +22,7 @@ jobs:
           
       - name: Perform google formatter check
         run: mvn com.spotify.fmt:fmt-maven-plugin:check
-        working-directory: hospital-management/hospital-management-console
-
+        working-directory: hospital-management/api-gateway
 
       - name: GitLeaks Scan
         uses: zricethezav/gitleaks-action@v1.3.0
@@ -36,24 +35,10 @@ jobs:
         if: false
         run: mvn org.owasp:dependency-check-maven:check
 
-      - name: Build code and create docker image for hospital-management-console
+      - name: License finder
         run: |
-          mvn clean install
-          mvn docker:build -Dimage.registry=${{secrets.CONTAINER_REGISTRY_URL}} -Dimage.tag=$GITHUB_REF_NAME
-        working-directory: hospital-management/hospital-management-console
+          cd hospital-management/api-gateway
+          docker pull tambenikita391/license-finder:latest
+          docker run -v "$(pwd):/scan" tambenikita391/license-finder:latest
+        continue-on-error: true
         
-      - name: List Docker Images
-        run: docker images
-
-      - name: Log in to GitHub Docker Registry
-        uses: docker/login-action@v2
-        with:
-          username: ${{secrets.DOCKER_REGISTRY_USER}}
-          password: ${{secrets.DOCKER_REGISTRY_PAT}}
-
-      - name: Push docker images
-        run: |
-         docker push ${{secrets.CONTAINER_REGISTRY_URL}}/hospital-console:$GITHUB_REF_NAME
-         
-         
-         
