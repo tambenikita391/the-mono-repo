@@ -1,34 +1,43 @@
 
-
 name: Build and Push Docker Images
 
 on:
   push:
     paths:
-      - hospital-management/appointment-service/**
+      - hospital-management/hospital-management-console/**
 
 jobs:
-  build-and-push:
+  build-and-push-hospital-management-console:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Build Docker Image for appointment service
-        run: 
-          docker build -t ${{ secrets.DOCKER_REGISTRY_USER}}/hospital-management-console:latest -f dockerfile .
-        working-directory: hospital-management/hospital-management-console
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
 
-      - name: Login to Docker Hub
+      - name: Build code and create docker image for hospital-management-console
+        run: |
+          mvn clean install
+          mvn docker:build -Dimage.registry=${{secrets.CONTAINER_REGISTRY_URL}} -Dimage.tag=$GITHUB_REF_NAME
+        working-directory: hospital-management/hospital-management-console
+        
+      - name: List Docker Images
+        run: docker images
+
+      - name: Log in to GitHub Docker Registry
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKER_REGISTRY_USER}}
-          password: ${{ secrets.DOCKER_REGISTRY_PAT}}
+          username: ${{secrets.DOCKER_REGISTRY_USER}}
+          password: ${{secrets.DOCKER_REGISTRY_PAT}}
 
-      - name: Push Docker Image of hospital console javafx
-        run: 
-          docker push ${{secrets.DOCKER_REGISTRY_USER}}/hospital-console:latest
-
-      
-
+      - name: Push docker images
+        run: |
+         docker push ${{secrets.CONTAINER_REGISTRY_URL}}/hospital-console:$GITHUB_REF_NAME
+         
+         
+         

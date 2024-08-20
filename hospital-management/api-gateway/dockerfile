@@ -1,11 +1,10 @@
-
 # Base WORKDIR => /
 FROM openjdk:24-jdk-slim
 
 WORKDIR /app
 
 # Copy the application JAR file
-COPY target/hospital-mgmt-api-gateway-0.0.1-SNAPSHOT.jar /app/api-gateway.jar
+COPY target/api-gateway-0.0.1-SNAPSHOT.jar /app/api-gateway.jar
 
 # Start the application
 CMD ["java", "-jar","api-gateway.jar"]

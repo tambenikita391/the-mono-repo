@@ -2,16 +2,11 @@ name: Build and Push Docker Images
 
 on:
   push:
-    branches:
-      - '**'
-    tags:
-      - '**'
-  pull_request:
-    branches:
-      - main
+    paths:
+      - hospital-management/api-gateway/**
 
 jobs:
-  build-and-push:
+  build-and-push-api-gateway:
     runs-on: ubuntu-latest
 
     steps:
@@ -42,5 +37,6 @@ jobs:
       - name: Push docker images
         run: |
          docker push ${{secrets.CONTAINER_REGISTRY_URL}}/api-gateway:$GITHUB_REF_NAME
+         
          
          
