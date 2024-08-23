@@ -35,7 +35,7 @@ jobs:
         run: make git_status
 
       - name: Pull Latest Changes
-        working-directory: hospital-management/api-gateway
+        working-directory: hospital-management
         run: make git_pull
 
       - name: Stash Changes
@@ -43,15 +43,15 @@ jobs:
         run: make git_stash
 
       - name: Build Library Project
-        working-directory: hospital-management/api-gateway
+        working-directory: hospital-management
         run: make build_lib
 
       - name: Build Services
-        working-directory: hospital-management/api-gateway
+        working-directory: hospital-management
         run: make build_services
 
       - name: Build Docker Images
-        working-directory: hospital-management/api-gateway
+        working-directory: hospital-management
         run: make build_images
 
       - name: Log in to Docker Hub
@@ -61,5 +61,5 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker Images
-        working-directory: hospital-management/api-gateway
+        working-directory: hospital-management
         run: make push_images
