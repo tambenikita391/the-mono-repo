@@ -2,8 +2,8 @@ name: Build and Deploy API Gateway
 
 on:
   push:
-    paths:
-      - hospital-management/api-gateway/**
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
