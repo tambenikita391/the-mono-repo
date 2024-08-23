@@ -27,6 +27,7 @@ jobs:
         run: ls -la
 
       - name: Display Makefile Content
+        working-directory: hospital-management
         run: cat Makefile
 
       - name: Run git_status
