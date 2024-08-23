@@ -1,12 +1,12 @@
-name: Build and Push Docker Images
+name: Build and Deploy API Gateway
 
 on:
   push:
-    paths:
-      - hospital-management/api-gateway/**
+    branches:
+      - main
 
 jobs:
-  build-and-push-api-gateway:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,64 +19,67 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Wait Before Cleanup
-        run: sleep 10
+      - name: Install Make
+        run: sudo apt-get install -y make
 
-      - name: Remove Problematic Files
-        run: |
-          if [ -d "hospital-management/api-gateway/target" ]; then
-            find hospital-management/api-gateway/target -name '*.html' -exec rm -f {} \;
-          fi
+      - name: Clone Repositories
         working-directory: hospital-management/api-gateway
+        run: make clone
+        env:
+          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
+          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
 
-      - name: Clean up Target Directory
-        run: rm -rf hospital-management/api-gateway/target
-
-      - name: Perform Google Formatter Check
-        run: mvn com.spotify.fmt:fmt-maven-plugin:check
+      - name: Print Git Status
         working-directory: hospital-management/api-gateway
+        run: bash -e make git_status
+        env:
+          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
+          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
 
-      - name: GitLeaks Scan
-        uses: zricethezav/gitleaks-action@v1.3.0
-
-      - name: OSS Scan
-        run: mvn org.codehaus.mojo:ossindex-maven-plugin:audit
-        continue-on-error: true
-
-      - name: OWASP Scan
-        if: false
-        run: mvn org.owasp:dependency-check-maven:check
-
-      - name: Build Code and Create Docker Images
-        run: |
-          mvn clean install -X
-          mvn docker:build -Dimage.registry=${{secrets.CONTAINER_REGISTRY_URL}} -Dimage.tag=$GITHUB_REF_NAME
+      - name: Pull Latest Changes
         working-directory: hospital-management/api-gateway
+        run: bash -e make git_pull
+        env:
+          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
+          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
 
-      - name: List Docker Images
-        run: docker images
+      - name: Stash Changes
+        working-directory: hospital-management/api-gateway
+        run: bash -e make git_stash
+        env:
+          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
+          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
 
-      - name: Log in to GitHub Docker Registry
+      - name: Build Library Project
+        working-directory: hospital-management/api-gateway
+        run: bash -e make build_lib
+        env:
+          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
+          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
+
+      - name: Build Services
+        working-directory: hospital-management/api-gateway
+        run: bash -e make build_services
+        env:
+          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
+          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
+
+      - name: Build Docker Images
+        working-directory: hospital-management/api-gateway
+        run: bash -e make build_images
+        env:
+          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
+          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
+
+      - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{secrets.DOCKER_REGISTRY_USER}}
-          password: ${{secrets.DOCKER_REGISTRY_PAT}}
+          username: ${{ secrets.DOCKER_REGISTRY_USER }}
+          password: ${{ secrets.DOCKER_REGISTRY_PAT }}
 
       - name: Push Docker Images
-        run: |
-          docker push ${{secrets.CONTAINER_REGISTRY_URL}}/api-gateway:$GITHUB_REF_NAME
-
-  license-finder-check:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Pull License Finder Docker Image
-        run: docker pull tambenikita391/license-finder:latest
-
-      - name: Run License Finder Check
-        run: |
-          docker run --rm -v "$(pwd)/hospital-management/api-gateway:/scan" tambenikita391/license-finder:latest
-        continue-on-error: true
+        working-directory: hospital-management/api-gateway
+        run: bash -e make push_images
+        env:
+          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
+          JAVA_HOME_17_X64: /opt/host
