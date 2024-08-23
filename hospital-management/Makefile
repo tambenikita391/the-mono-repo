@@ -51,13 +51,13 @@ build_services:
 build_images:
 	@echo "Building Docker images for all services..."
 	@for service in $(SERVICES); do \
-		(cd $$service && docker build -t your-dockerhub-username/$$service .); \
+		(cd $$service && docker build -t tambenikita391/$$service .); \
 	done
 
 # Push Docker images to Docker Hub
 push_images:
 	@echo "Pushing Docker images to Docker Hub..."
 	@for service in $(SERVICES); do \
-		docker push your-dockerhub-username/$$service; \
+		docker push tambenikita391/$$service; \
 	done
 
