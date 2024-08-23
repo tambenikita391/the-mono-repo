@@ -30,21 +30,27 @@ jobs:
         run: cat Makefile
 
       - name: Run git_status
+        working-directory: hospital-management/api-gateway
         run: make git_status
 
       - name: Pull Latest Changes
+        working-directory: hospital-management/api-gateway
         run: make git_pull
 
       - name: Stash Changes
+        working-directory: hospital-management/api-gateway
         run: make git_stash
 
       - name: Build Library Project
+        working-directory: hospital-management/api-gateway
         run: make build_lib
 
       - name: Build Services
+        working-directory: hospital-management/api-gateway
         run: make build_services
 
       - name: Build Docker Images
+        working-directory: hospital-management/api-gateway
         run: make build_images
 
       - name: Log in to Docker Hub
@@ -54,4 +60,5 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker Images
+        working-directory: hospital-management/api-gateway
         run: make push_images
