@@ -22,12 +22,14 @@ jobs:
       - name: Install Make
         run: sudo apt-get install -y make
 
+      - name: List Files
+        run: ls -la
+
+      - name: Display Makefile Content
+        run: cat Makefile
+
       - name: Clone Repositories
-        working-directory: hospital-management/api-gateway
         run: make clone
-        env:
-          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
-          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
 
       - name: Print Git Status
         working-directory: hospital-management/api-gateway
