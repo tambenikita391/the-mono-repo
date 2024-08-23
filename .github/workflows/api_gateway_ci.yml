@@ -24,7 +24,7 @@ jobs:
 
       - name: Clone Repositories
         working-directory: hospital-management/api-gateway
-        run: bash -e make clone
+        run: make clone
         env:
           JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
           JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
