@@ -1,4 +1,4 @@
-name: Build and Push Docker Images
+name: Build and Deploy API Gateway
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - hospital-management/api-gateway/**
 
 jobs:
-  build-and-push-api-gateway:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,64 +19,43 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Wait Before Cleanup
-        run: sleep 10
+      - name: Cache Maven Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
 
-      - name: Remove Problematic Files
-        run: |
-          if [ -d "hospital-management/api-gateway/target" ]; then
-            find hospital-management/api-gateway/target -name '*.html' -exec rm -f {} \;
-          fi
-        working-directory: hospital-management/api-gateway
+      - name: Install Make
+        run: sudo apt-get install -y make
 
-      - name: Clean up Target Directory
-        run: rm -rf hospital-management/api-gateway/target
+      - name: Clone Repositories
+        run: make clone
 
-      - name: Perform Google Formatter Check
-        run: mvn com.spotify.fmt:fmt-maven-plugin:check
-        working-directory: hospital-management/api-gateway
+      - name: Print Git Status
+        run: make git_status
 
-      - name: GitLeaks Scan
-        uses: zricethezav/gitleaks-action@v1.3.0
+      - name: Pull Latest Changes
+        run: make git_pull
 
-      - name: OSS Scan
-        run: mvn org.codehaus.mojo:ossindex-maven-plugin:audit
-        continue-on-error: true
+      - name: Stash Changes
+        run: make git_stash
 
-      - name: OWASP Scan
-        if: false
-        run: mvn org.owasp:dependency-check-maven:check
+      - name: Build Library Project
+        run: make build_lib
 
-      - name: Build Code and Create Docker Images
-        run: |
-          mvn clean install -X
-          mvn docker:build -Dimage.registry=${{secrets.CONTAINER_REGISTRY_URL}} -Dimage.tag=$GITHUB_REF_NAME
-        working-directory: hospital-management/api-gateway
+      - name: Build Services
+        run: make build_services
 
-      - name: List Docker Images
-        run: docker images
+      - name: Build Docker Images
+        run: make build_images
 
-      - name: Log in to GitHub Docker Registry
+      - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{secrets.DOCKER_REGISTRY_USER}}
-          password: ${{secrets.DOCKER_REGISTRY_PAT}}
+          username: ${{ secrets.DOCKER_REGISTRY_USER }}
+          password: ${{ secrets.DOCKER_REGISTRY_PAT }}
 
       - name: Push Docker Images
-        run: |
-          docker push ${{secrets.CONTAINER_REGISTRY_URL}}/api-gateway:$GITHUB_REF_NAME
-
-  license-finder-check:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Pull License Finder Docker Image
-        run: docker pull tambenikita391/license-finder:latest
-
-      - name: Run License Finder Check
-        run: |
-          docker run --rm -v "$(pwd)/hospital-management/api-gateway:/scan" tambenikita391/license-finder:latest
-        continue-on-error: true
+        run: make push_images
