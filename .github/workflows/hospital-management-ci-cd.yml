@@ -2,8 +2,8 @@ name: Build and Deploy hospital-management using makefile
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - hospital-management/**
     
 
 jobs:
