@@ -16,6 +16,12 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.2.2</version>
 	</parent>
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>https://repo.maven.apache.org/maven2</url>
+		</repository>
+	</repositories>
 	<dependencies>
 		<!-- Spring Cloud Gateway -->
 		<dependency>
@@ -24,6 +30,7 @@
 			<version>4.1.1</version>
 		</dependency>
 	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -85,6 +92,12 @@
 					</images>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.3.2</version> <!-- Update this version if needed -->
+			</plugin>
 		</plugins>
 	</build>
+
 </project>

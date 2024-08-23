@@ -18,8 +18,21 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          
-      - name: Perform google formatter check
+
+      - name: Wait Before Cleanup
+        run: sleep 10
+
+      - name: Remove Problematic Files
+        run: |
+          if [ -d "hospital-management/api-gateway/target" ]; then
+            find hospital-management/api-gateway/target -name '*.html' -exec rm -f {} \;
+          fi
+        working-directory: hospital-management/api-gateway
+
+      - name: Clean up Target Directory
+        run: rm -rf hospital-management/api-gateway/target
+
+      - name: Perform Google Formatter Check
         run: mvn com.spotify.fmt:fmt-maven-plugin:check
         working-directory: hospital-management/api-gateway
 
@@ -27,26 +40,19 @@ jobs:
         uses: zricethezav/gitleaks-action@v1.3.0
 
       - name: OSS Scan
-        run: mvn ossindex:audit
+        run: mvn org.codehaus.mojo:ossindex-maven-plugin:audit
         continue-on-error: true
 
       - name: OWASP Scan
         if: false
         run: mvn org.owasp:dependency-check-maven:check
 
-      - name: License finder
+      - name: Build Code and Create Docker Images
         run: |
-          cd hospital-management/api-gateway
-          docker pull tambenikita391/license-finder:latest
-          docker run -v "$(pwd):/scan" tambenikita391/license-finder:latest
-        continue-on-error: true
-        
-      - name: Build code and create docker images
-        run: |
-          mvn clean install
+          mvn clean install -X
           mvn docker:build -Dimage.registry=${{secrets.CONTAINER_REGISTRY_URL}} -Dimage.tag=$GITHUB_REF_NAME
         working-directory: hospital-management/api-gateway
-        
+
       - name: List Docker Images
         run: docker images
 
@@ -56,9 +62,21 @@ jobs:
           username: ${{secrets.DOCKER_REGISTRY_USER}}
           password: ${{secrets.DOCKER_REGISTRY_PAT}}
 
-      - name: Push docker images
+      - name: Push Docker Images
         run: |
-         docker push ${{secrets.CONTAINER_REGISTRY_URL}}/api-gateway:$GITHUB_REF_NAME
-         
-         
-         
+          docker push ${{secrets.CONTAINER_REGISTRY_URL}}/api-gateway:$GITHUB_REF_NAME
+
+  license-finder-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Pull License Finder Docker Image
+        run: docker pull tambenikita391/license-finder:latest
+
+      - name: Run License Finder Check
+        run: |
+          docker run --rm -v "$(pwd)/hospital-management/api-gateway:/scan" tambenikita391/license-finder:latest
+        continue-on-error: true
