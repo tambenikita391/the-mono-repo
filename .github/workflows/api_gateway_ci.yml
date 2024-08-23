@@ -30,7 +30,8 @@ jobs:
         run: cat Makefile
 
       - name: Run git_status
-        run: make -f ../Makefile git_status
+        working-directory: hospital-management
+        run: make git_status
 
       - name: Pull Latest Changes
         working-directory: hospital-management/api-gateway
