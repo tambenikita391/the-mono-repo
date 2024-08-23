@@ -1,4 +1,4 @@
-name: Build and Deploy API Gateway
+name: Build and Deploy hospital-management using makefile
 
 on:
   push:
