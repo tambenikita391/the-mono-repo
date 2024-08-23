@@ -6,7 +6,7 @@ on:
       - hospital-management/api-gateway/**
 
 jobs:
-  build-and-push:
+  build-and-push-api-gateway:
     runs-on: ubuntu-latest
 
     steps:
