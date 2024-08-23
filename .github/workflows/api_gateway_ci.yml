@@ -33,45 +33,27 @@ jobs:
 
       - name: Print Git Status
         working-directory: hospital-management/api-gateway
-        run: bash -e make git_status
-        env:
-          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
-          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
+        run: git_status
 
       - name: Pull Latest Changes
         working-directory: hospital-management/api-gateway
-        run: bash -e make git_pull
-        env:
-          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
-          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
+        run: make git_pull
 
       - name: Stash Changes
         working-directory: hospital-management/api-gateway
-        run: bash -e make git_stash
-        env:
-          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
-          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
+        run: git_stash
 
       - name: Build Library Project
         working-directory: hospital-management/api-gateway
-        run: bash -e make build_lib
-        env:
-          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
-          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
+        run: make build_lib
 
       - name: Build Services
         working-directory: hospital-management/api-gateway
-        run: bash -e make build_services
-        env:
-          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
-          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
+        run: make build_services
 
       - name: Build Docker Images
         working-directory: hospital-management/api-gateway
-        run: bash -e make build_images
-        env:
-          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
-          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
+        run: make build_images
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -81,7 +63,4 @@ jobs:
 
       - name: Push Docker Images
         working-directory: hospital-management/api-gateway
-        run: bash -e make push_images
-        env:
-          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.12-7/x64
-          JAVA_HOME_17_X64: /opt/host
+        run: make push_images
