@@ -31,7 +31,7 @@ jobs:
 
       - name: Run git_status
         working-directory: hospital-management/api-gateway
-        run: make git_status
+        run: make -f ../Makefile git_status
 
       - name: Pull Latest Changes
         working-directory: hospital-management/api-gateway
