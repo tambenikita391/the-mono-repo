@@ -60,3 +60,4 @@ push_images:
 	@for service in $(SERVICES); do \
 		docker push your-dockerhub-username/$$service; \
 	done
+
